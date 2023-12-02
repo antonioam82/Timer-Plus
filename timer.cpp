@@ -3,8 +3,8 @@
 using namespace std;
 
 string options(){
-    string a = "";
-    string b = "";
+    string a;
+    string b;
     cout << "            __________________________________________               " << endl;
     cout << "           /__   ____________________________________/               " << endl;
     cout << "             /  / __   _________   ______   ________                 " << endl;
@@ -16,8 +16,8 @@ string options(){
 
 int main()
 {
-    string hello = "";
-    string g = "";
+    string hello;
+    string g;
     hello, g = options();
     cout << g << endl;
 
