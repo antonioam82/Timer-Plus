@@ -2,6 +2,12 @@
 
 using namespace std;
 
+void LimpiarPantalla(){
+	if(system("cls") == -1){
+		cout<<"Error al borrar la pantalla  :(";
+	}
+}
+
 string options(){
     string optionsOne;
     cout << "            __________________________________________               " << endl;
@@ -29,7 +35,8 @@ int main()
     string option;
     while(option != "D"){
         option = options();
-        cout << "Ha escojido la opcion " << option << endl;
+        //cout << "Ha escojido la opcion " << option << endl;
+        LimpiarPantalla();
     }
 
     return 0;
