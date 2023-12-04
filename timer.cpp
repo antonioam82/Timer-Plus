@@ -11,7 +11,7 @@ string options(){
     cout << "           /__/  |__| |_| |_| |_| |______| |_|  \\_\\                " << endl;
     cout << "*******************************************************************\n" << endl;
 
-    cout << "-------------------------ESCOJA UNA OPCIÓN-------------------------" << endl;
+    cout << "-------------------------ESCOJA UNA OPCION-------------------------" << endl;
     cout << "A) Calcular numero de dias entre una fecha y la actual." <<endl;
     cout << "B) Calcular numero de dias entre dos fechas." <<endl;
     cout << "C) Conocer fecha a partir del numero de dias." <<endl;
@@ -34,4 +34,3 @@ int main()
 
     return 0;
 }
-
