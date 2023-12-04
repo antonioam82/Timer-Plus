@@ -15,6 +15,7 @@ string options(){
     cout << "A) Calcular numero de dias entre una fecha y la actual." <<endl;
     cout << "B) Calcular numero de dias entre dos fechas." <<endl;
     cout << "C) Conocer fecha a partir del numero de dias." <<endl;
+    cout << "D) Salir del programa." << endl;
     cout << "-------------------------------------------------------------------\n" << endl;
 
     cout << "Introduzca aqui su opcion: "; cin >> optionsOne;
@@ -26,8 +27,11 @@ int main()
 {
 
     string option;
-    option = options();
-    cout << "Ha escojido la opcion " << option << endl;
+    while(option != "D"){
+        option = options();
+        cout << "Ha escojido la opcion " << option << endl;
+    }
 
     return 0;
 }
+
