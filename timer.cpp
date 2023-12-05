@@ -9,6 +9,7 @@ void LimpiarPantalla(){
 	}
 }
 
+
 string options(){
     string optionsOne;
     time_t tiempo_actual = std::time(nullptr);
@@ -41,9 +42,14 @@ int main()
 {
 
     string option;
+    string cont;
     while(option != "D"){
         option = options();
-        //cout << "Ha escojido la opcion " << option << endl;
+        while(option != "A" && option != "B" && option != "C" && option != "D"){
+            cout << "OPCION NO VALIDA." << endl;
+            cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
+            option = options();
+        }
         LimpiarPantalla();
     }
 
