@@ -26,6 +26,25 @@ int getCurrentDate(){
 
 }
 
+int daysDiff(){
+    tm date1 = {0}; // Inicializa las estructuras de fechas
+    tm date2 = {0};
+    int yearEntry1;
+    int monthEntry1;
+    int dayEntry1;
+    int yearEntry2;
+    int monthEntry2;
+    int dayEntry2;
+
+    cout << "\nIntroduzca anno del primer suceso: "; cin >> yearEntry1;
+    cout << "Introduzca mes del primer suceso: "; cin >> monthEntry1;
+    cout << "Introduzca dia del primer suceso: "; cin >> dayEntry1;
+
+
+    return 0;
+
+}
+
 string options(){
     string optionsOne;
     LimpiarPantalla();
@@ -60,9 +79,9 @@ int main()
             cout << "OPCION NO VALIDA." << endl;
             cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
             option = options();
-            if(option == "A"){
-
-            }
+        }
+        if(option == "B"){
+            daysDiff();
         }
     }
     LimpiarPantalla();
