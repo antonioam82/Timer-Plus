@@ -9,7 +9,6 @@ void LimpiarPantalla(){
 	}
 }
 
-
 string options(){
     string optionsOne;
     LimpiarPantalla();
