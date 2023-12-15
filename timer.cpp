@@ -26,8 +26,6 @@ int getCurrentDate(){
 
 }
 
-
-
 string options(){
     string optionsOne;
     LimpiarPantalla();
