@@ -40,6 +40,9 @@ int daysDiff(){
     cout << "Introduzca mes del primer suceso: "; cin >> monthEntry1;
     cout << "Introduzca dia del primer suceso: "; cin >> dayEntry1;
 
+    cout << "\nIntroduzca anno del segundo suceso: "; cin >> yearEntry2;
+    cout << "Introduzca mes del segundo suceso: "; cin >> monthEntry2;
+    cout << "Introduzca dia del segundo suceso: "; cin >> dayEntry2;
 
     return 0;
 
