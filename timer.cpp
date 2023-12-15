@@ -44,6 +44,18 @@ int daysDiff(){
     cout << "Introduzca mes del segundo suceso: "; cin >> monthEntry2;
     cout << "Introduzca dia del segundo suceso: "; cin >> dayEntry2;
 
+    date1.tm_year = yearEntry1 - 1900;
+    date1.tm_mon = monthEntry1 - 1;
+    date1.tm_mday = dayEntry1;
+
+    date2.tm_year = yearEntry2 - 1900;
+    date2.tm_mon = monthEntry2 - 1;
+    date2.tm_mday = dayEntry2;
+
+    time_t time1 = mktime(&date1);
+    time_t time2 = mktime(&date2);
+
+
     return 0;
 
 }
