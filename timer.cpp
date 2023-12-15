@@ -12,6 +12,7 @@ void LimpiarPantalla(){
 
 string options(){
     string optionsOne;
+    LimpiarPantalla();
     time_t tiempo_actual = std::time(nullptr);
     tm* tiempo_descompuesto = std::localtime(&tiempo_actual);
 
@@ -40,7 +41,6 @@ string options(){
 
 int main()
 {
-
     string option;
     string cont;
     while(option != "D"){
@@ -50,8 +50,7 @@ int main()
             cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
             option = options();
         }
-        LimpiarPantalla();
     }
-
+    LimpiarPantalla();
     return 0;
 }
