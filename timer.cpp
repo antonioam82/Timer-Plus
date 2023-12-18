@@ -57,7 +57,7 @@ int daysDiff(){
 
     double diferencia_segundos = difftime(time2, time1);
     double dias = diferencia_segundos / (60 * 60 * 24);
-    cout << "Diferencia en dias: " << dias << endl;
+    cout << "\nDiferencia en dias: " << dias << endl;
 
     return 0;
 
