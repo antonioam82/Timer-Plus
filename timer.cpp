@@ -55,6 +55,9 @@ int daysDiff(){
     time_t time1 = mktime(&date1);
     time_t time2 = mktime(&date2);
 
+    double diferencia_segundos = difftime(time2, time1);
+    double dias = diferencia_segundos / (60 * 60 * 24);
+    cout << "Diferencia en dias: " << dias << endl;
 
     return 0;
 
@@ -97,6 +100,7 @@ int main()
         }
         if(option == "B"){
             daysDiff();
+            cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
         }
     }
     LimpiarPantalla();
