@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <locale>
 
 using namespace std;
 
@@ -57,7 +58,7 @@ int daysDiff(){
 
     double diferencia_segundos = difftime(time2, time1);
     double dias = diferencia_segundos / (60 * 60 * 24);
-    cout << "\nDiferencia en dias: " << dias << endl;
+    cout << "\nDiferencia en dias: " << dias << " dias" << endl;
 
     return 0;
 
@@ -89,6 +90,7 @@ string options(){
 
 int main()
 {
+    locale::global(std::locale(""));
     string option;
     string cont;
     while(option != "D"){
