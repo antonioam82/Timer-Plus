@@ -27,6 +27,33 @@ int getCurrentDate(){
 
 }
 
+int daysDiff0() {
+    tm date1 = { 0 }; // Inicializa la estructura de fecha
+    int yearEntry1;
+    int monthEntry1;
+    int dayEntry1;
+
+    cout << "\nIntroduzca anno del suceso: "; cin >> yearEntry1;
+    cout << "Introduzca mes del suceso: "; cin >> monthEntry1;
+    cout << "Introduzca día del suceso: "; cin >> dayEntry1;
+
+    date1.tm_year = yearEntry1 - 1900;
+    date1.tm_mon = monthEntry1 - 1;
+    date1.tm_mday = dayEntry1;
+
+    time_t tiempo_actual = time(nullptr);
+    tm* tiempo_descompuesto = localtime(&tiempo_actual);
+
+    time_t time1 = mktime(&date1);
+    time_t time2 = mktime(tiempo_descompuesto);
+
+    double diferencia_segundos = difftime(time2, time1);
+    double dias = diferencia_segundos / (60 * 60 * 24);
+    cout << "\nDiferencia en dias: " << static_cast<int>(dias) << " dias" << endl;
+
+    return 0;
+}
+
 int daysDiff(){
     tm date1 = {0}; // Inicializa las estructuras de fechas
     tm date2 = {0};
@@ -58,7 +85,7 @@ int daysDiff(){
 
     double diferencia_segundos = difftime(time2, time1);
     double dias = diferencia_segundos / (60 * 60 * 24);
-    cout << "\nDiferencia en dias: " << dias << " dias" << endl;
+    cout << "\nDiferencia en dias: " << static_cast<int>(dias) << " dias" << endl;
 
     return 0;
 
@@ -67,6 +94,9 @@ int daysDiff(){
 string options(){
     string optionsOne;
     LimpiarPantalla();
+    //string frase = "";
+    //int longitud = int(frase.length());
+    //cout << "Longitud frase: " << longitud << endl;
 
     cout << "            __________________________________________               " << endl;
     cout << "           /__   ____________________________________/               " << endl;
@@ -100,10 +130,13 @@ int main()
             cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
             option = options();
         }
+        if(option == "A"){
+            daysDiff0();
+        }
         if(option == "B"){
             daysDiff();
-            cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
         }
+        cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
     }
     LimpiarPantalla();
     return 0;
