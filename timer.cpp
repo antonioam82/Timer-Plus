@@ -12,7 +12,7 @@ void LimpiarPantalla(){
 	}
 }
 
-int obtenerNumeroEntero(string mensaje) {
+int obtenerNumeroEntero(string mensaje, int minVal, int maxVal) {
     int numero;
     string input;
 
@@ -21,11 +21,11 @@ int obtenerNumeroEntero(string mensaje) {
         cin >> input;
 
         stringstream ss(input);
-        if (ss >> numero && ss.eof()) {
+        if (ss >> numero && ss.eof() && numero >= minVal && numero <= maxVal) {
             break;
         }
 
-        cout << "Por favor, ingrese un valor numerico valido." << endl;
+        cout << "Por favor, ingrese un numero valido en el rango (" << minVal << " - " << maxVal << ")." << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
@@ -54,9 +54,9 @@ int daysDiff0() {
     tm date1 = { 0 }; // Inicializa la estructura de fecha
 
     //cout << "\nIntroduzca anno del suceso: "; cin >> yearEntry1;
-    int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del suceso: ");
-    int monthEntry1 = obtenerNumeroEntero("Introduzca mes del suceso: ");
-    int dayEntry1 = obtenerNumeroEntero("Introduzca dia del suceso: ");
+    int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del suceso: ", INT_MIN, INT_MAX);
+    int monthEntry1 = obtenerNumeroEntero("Introduzca mes del suceso (1-12): ", 1, 12);
+    int dayEntry1 = obtenerNumeroEntero("Introduzca dia del suceso: ", 1, 31);
 
     date1.tm_year = yearEntry1 - 1900;
     date1.tm_mon = monthEntry1 - 1;
@@ -79,13 +79,13 @@ int daysDiff(){
     tm date1 = {0}; // Inicializa las estructuras de fechas
     tm date2 = {0};
 
-    int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del primer suceso: ");
-    int monthEntry1 = obtenerNumeroEntero("Introduzca mes del primer suceso: ");
-    int dayEntry1 = obtenerNumeroEntero("Introduzca dia del primer suceso: ");
+    int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del primer suceso: ", INT_MIN, INT_MAX);
+    int monthEntry1 = obtenerNumeroEntero("Introduzca mes del primer suceso (1-12): ", 1, 12);
+    int dayEntry1 = obtenerNumeroEntero("Introduzca día del primer suceso: ", 1, 31);
 
-    int yearEntry2 = obtenerNumeroEntero("\nIntroduzca anno del segundo suceso: ");
-    int monthEntry2 = obtenerNumeroEntero("Introduzca mes del segundo suceso: ");
-    int dayEntry2 = obtenerNumeroEntero("Introduzca dia del segundo suceso: ");
+    int yearEntry2 = obtenerNumeroEntero("\nIntroduzca anno del segundo suceso: ", INT_MIN, INT_MAX);
+    int monthEntry2 = obtenerNumeroEntero("Introduzca mes del segundo suceso (1-12): ", 1, 12);
+    int dayEntry2 = obtenerNumeroEntero("Introduzca dia del segundo suceso: ", 1, 31);
 
     date1.tm_year = yearEntry1 - 1900;
     date1.tm_mon = monthEntry1 - 1;
