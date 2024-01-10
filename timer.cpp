@@ -81,7 +81,7 @@ int daysDiff(){
 
     int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del primer suceso: ", INT_MIN, INT_MAX);
     int monthEntry1 = obtenerNumeroEntero("Introduzca mes del primer suceso (1-12): ", 1, 12);
-    int dayEntry1 = obtenerNumeroEntero("Introduzca día del primer suceso: ", 1, 31);
+    int dayEntry1 = obtenerNumeroEntero("Introduzca dia del primer suceso: ", 1, 31);
 
     int yearEntry2 = obtenerNumeroEntero("\nIntroduzca anno del segundo suceso: ", INT_MIN, INT_MAX);
     int monthEntry2 = obtenerNumeroEntero("Introduzca mes del segundo suceso (1-12): ", 1, 12);
