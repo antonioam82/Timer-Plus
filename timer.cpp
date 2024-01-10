@@ -1,6 +1,8 @@
 #include <iostream>
 #include <ctime>
 #include <locale>
+#include <limits>
+#include <sstream>
 
 using namespace std;
 
@@ -8,6 +10,27 @@ void LimpiarPantalla(){
 	if(system("cls") == -1){
 		cout<<"Error al borrar la pantalla  :(";
 	}
+}
+
+int obtenerNumeroEntero(string mensaje) {
+    int numero;
+    string input;
+
+    while (true) {
+        cout << mensaje;
+        cin >> input;
+
+        stringstream ss(input);
+        if (ss >> numero && ss.eof()) {
+            break;
+        }
+
+        cout << "Por favor, ingrese un valor numerico valido." << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    return numero;
 }
 
 int getCurrentDate(){
@@ -29,13 +52,11 @@ int getCurrentDate(){
 
 int daysDiff0() {
     tm date1 = { 0 }; // Inicializa la estructura de fecha
-    int yearEntry1;
-    int monthEntry1;
-    int dayEntry1;
 
-    cout << "\nIntroduzca anno del suceso: "; cin >> yearEntry1;
-    cout << "Introduzca mes del suceso: "; cin >> monthEntry1;
-    cout << "Introduzca día del suceso: "; cin >> dayEntry1;
+    //cout << "\nIntroduzca anno del suceso: "; cin >> yearEntry1;
+    int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del suceso: ");
+    int monthEntry1 = obtenerNumeroEntero("Introduzca mes del suceso: ");
+    int dayEntry1 = obtenerNumeroEntero("Introduzca dia del suceso: ");
 
     date1.tm_year = yearEntry1 - 1900;
     date1.tm_mon = monthEntry1 - 1;
@@ -57,20 +78,14 @@ int daysDiff0() {
 int daysDiff(){
     tm date1 = {0}; // Inicializa las estructuras de fechas
     tm date2 = {0};
-    int yearEntry1;
-    int monthEntry1;
-    int dayEntry1;
-    int yearEntry2;
-    int monthEntry2;
-    int dayEntry2;
 
-    cout << "\nIntroduzca anno del primer suceso: "; cin >> yearEntry1;
-    cout << "Introduzca mes del primer suceso: "; cin >> monthEntry1;
-    cout << "Introduzca dia del primer suceso: "; cin >> dayEntry1;
+    int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del primer suceso: ");
+    int monthEntry1 = obtenerNumeroEntero("Introduzca mes del primer suceso: ");
+    int dayEntry1 = obtenerNumeroEntero("Introduzca dia del primer suceso: ");
 
-    cout << "\nIntroduzca anno del segundo suceso: "; cin >> yearEntry2;
-    cout << "Introduzca mes del segundo suceso: "; cin >> monthEntry2;
-    cout << "Introduzca dia del segundo suceso: "; cin >> dayEntry2;
+    int yearEntry2 = obtenerNumeroEntero("\nIntroduzca anno del segundo suceso: ");
+    int monthEntry2 = obtenerNumeroEntero("Introduzca mes del segundo suceso: ");
+    int dayEntry2 = obtenerNumeroEntero("Introduzca dia del segundo suceso: ");
 
     date1.tm_year = yearEntry1 - 1900;
     date1.tm_mon = monthEntry1 - 1;
