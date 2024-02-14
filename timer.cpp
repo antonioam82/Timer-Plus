@@ -151,6 +151,9 @@ int main()
         if(option == "B"){
             daysDiff();
         }
+        if(option == "C"){
+            cout << "OPCION C" << endl;
+        }
         if(option != "D"){
             cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
         }
@@ -158,5 +161,4 @@ int main()
     }
     LimpiarPantalla();
     return 0;
-}
 
