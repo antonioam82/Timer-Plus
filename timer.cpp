@@ -119,10 +119,10 @@ void dateFromNum(){
     if(numeroDias > 0){
         cout << "Fecha dentro de " << numeroDias << " dias: " << ltmBeforeXDays->tm_mday << "/" << 1 + ltmBeforeXDays->tm_mon << "/" << 1900 + ltmBeforeXDays->tm_year << endl;
     }
-    if(numeroDias < 0){
-        cout << "Fecha hace " << numeroDias << " dias: " << ltmBeforeXDays->tm_mday << "/" << 1 + ltmBeforeXDays->tm_mon << "/" << 1900 + ltmBeforeXDays->tm_year << endl;
+    else if(numeroDias < 0){
+        cout << "Fecha hace " << abs(numeroDias) << " dias: " << ltmBeforeXDays->tm_mday << "/" << 1 + ltmBeforeXDays->tm_mon << "/" << 1900 + ltmBeforeXDays->tm_year << endl;
     }
-    if(numeroDias == 0){
+    else{
         cout << "Hoy es: " << ltm->tm_mday << "/" << 1 + ltm->tm_mon << "/" << 1900 + ltm->tm_year << endl;
     }
 
@@ -185,4 +185,3 @@ int main()
     LimpiarPantalla();
     return 0;
 }
-
