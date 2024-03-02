@@ -174,7 +174,6 @@ int main()
             daysDiff();
         }
         if(option == "C"){
-            cout << "OPCION C" << endl;
             dateFromNum();
         }
         if(option != "D"){
