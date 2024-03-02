@@ -106,6 +106,28 @@ int daysDiff(){
 
 }
 
+void dateFromNum(){
+    //int x;
+    int numeroDias;
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+
+    cout << "Introduce numero de dias: "; cin >> numeroDias;
+    time_t dateBeforeXDays = now + (numeroDias * 24 * 3600);
+    tm *ltmBeforeXDays = localtime(&dateBeforeXDays);
+
+    if(numeroDias > 0){
+        cout << "Fecha dentro de " << numeroDias << " dias: " << ltmBeforeXDays->tm_mday << "/" << 1 + ltmBeforeXDays->tm_mon << "/" << 1900 + ltmBeforeXDays->tm_year << endl;
+    }
+    if(numeroDias < 0){
+        cout << "Fecha hace " << numeroDias << " dias: " << ltmBeforeXDays->tm_mday << "/" << 1 + ltmBeforeXDays->tm_mon << "/" << 1900 + ltmBeforeXDays->tm_year << endl;
+    }
+    if(numeroDias == 0){
+        cout << "Hoy es: " << ltm->tm_mday << "/" << 1 + ltm->tm_mon << "/" << 1900 + ltm->tm_year << endl;
+    }
+
+}
+
 string options(){
     string optionsOne;
     LimpiarPantalla();
@@ -153,6 +175,7 @@ int main()
         }
         if(option == "C"){
             cout << "OPCION C" << endl;
+            dateFromNum();
         }
         if(option != "D"){
             cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
@@ -161,4 +184,5 @@ int main()
     }
     LimpiarPantalla();
     return 0;
+}
 
