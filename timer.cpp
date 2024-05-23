@@ -3,6 +3,7 @@
 #include <locale>
 #include <limits>
 #include <sstream>
+#include <cctype>
 
 using namespace std;
 
@@ -151,6 +152,8 @@ string options(){
     cout << "-------------------------------------------------------------------\n" << endl;
 
     cout << "Introduzca aqui su opcion: "; cin >> optionsOne;
+
+    optionsOne = toupper(optionsOne[0]); //conversion a mayuscula
 
     return optionsOne;
 };
