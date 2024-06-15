@@ -151,7 +151,8 @@ string options(){
     cout << "D) Salir del programa." << endl;
     cout << "-------------------------------------------------------------------\n" << endl;
 
-    cout << "Introduzca aqui su opcion: "; cin >> optionsOne;
+    //cout << "Introduzca aqui su opcion: "; cin >> optionsOne;
+    cout << "Introduzca aqui su opcion: ";
 
     optionsOne = toupper(optionsOne[0]); //conversion a mayuscula
 
@@ -165,10 +166,13 @@ int main()
     string cont;
     while(option != "D"){
         option = options();
-        while(option != "A" && option != "B" && option != "C" && option != "D"){
-            cout << "OPCION NO VALIDA." << endl;
-            cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
+        getline(cin, option);
+
+        while((option != "A" && option != "B" && option != "C" && option != "D") || option.empty()){
+            cout << "\nOPCION NO VALIDA: " << option << endl;
+            cout << "\nINGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
             option = options();
+            getline(cin, option);
         }
         if(option == "A"){
             daysDiff0();
@@ -182,6 +186,8 @@ int main()
         if(option != "D"){
             cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
         }
+        option = options();
+        getline(cin, option);
 
     }
     LimpiarPantalla();
