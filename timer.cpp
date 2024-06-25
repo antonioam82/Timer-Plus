@@ -71,8 +71,10 @@ int daysDiff0() {
 
     double diferencia_segundos = difftime(time2, time1);
     double dias = diferencia_segundos / (60 * 60 * 24);
+    int weeks = dias / 7;
+    int resto_dias = static_cast<int>(dias) % 7;
     cout << "\nDiferencia en dias: " << static_cast<int>(dias) << " dias" << endl;
-
+    cout << "\n" << weeks << " semanas" << " y " << resto_dias << " dias" << endl;
     return 0;
 }
 
@@ -101,7 +103,10 @@ int daysDiff(){
 
     double diferencia_segundos = difftime(time2, time1);
     double dias = diferencia_segundos / (60 * 60 * 24);
+    int weeks = dias / 7;
+    int resto_dias = static_cast<int>(dias) % 7;
     cout << "\nDiferencia en dias: " << static_cast<int>(dias) << " dias" << endl;
+    cout << "\n" << weeks << " semanas" << " y " << resto_dias << " dias" << endl;
 
     return 0;
 
@@ -151,8 +156,7 @@ string options(){
     cout << "D) Salir del programa." << endl;
     cout << "-------------------------------------------------------------------\n" << endl;
 
-    //cout << "Introduzca aqui su opcion: "; cin >> optionsOne;
-    cout << "Introduzca aqui su opcion: ";
+    cout << "Introduzca aqui su opcion: "; cin >> optionsOne;
 
     optionsOne = toupper(optionsOne[0]); //conversion a mayuscula
 
@@ -166,13 +170,11 @@ int main()
     string cont;
     while(option != "D"){
         option = options();
-        getline(cin, option);
 
-        while((option != "A" && option != "B" && option != "C" && option != "D") || option.empty()){
+        while(option != "A" && option != "B" && option != "C" && option != "D"){
             cout << "\nOPCION NO VALIDA: " << option << endl;
             cout << "\nINGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
             option = options();
-            getline(cin, option);
         }
         if(option == "A"){
             daysDiff0();
@@ -186,9 +188,6 @@ int main()
         if(option != "D"){
             cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
         }
-        option = options();
-        getline(cin, option);
-
     }
     LimpiarPantalla();
     return 0;
