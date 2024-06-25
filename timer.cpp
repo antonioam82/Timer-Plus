@@ -4,6 +4,7 @@
 #include <limits>
 #include <sstream>
 #include <cctype>
+#include <chrono>
 
 using namespace std;
 
@@ -158,7 +159,10 @@ string options(){
 
     cout << "Introduzca aqui su opcion: "; cin >> optionsOne;
 
-    optionsOne = toupper(optionsOne[0]); //conversion a mayuscula
+    //optionsOne = toupper(optionsOne[0]); //conversion a mayuscula
+    if (!optionsOne.empty()) {
+        optionsOne[0] = toupper(optionsOne[0]);
+    }
 
     return optionsOne;
 };
