@@ -5,8 +5,11 @@
 #include <sstream>
 #include <cctype>
 #include <chrono>
+#include "date/date.h"
 
 using namespace std;
+using namespace date;
+using namespace std::chrono;
 
 void LimpiarPantalla(){
 	if(system("cls") == -1){
@@ -60,22 +63,34 @@ int daysDiff0() {
     int monthEntry1 = obtenerNumeroEntero("Introduzca mes del suceso (1-12): ", 1, 12);
     int dayEntry1 = obtenerNumeroEntero("Introduzca dia del suceso: ", 1, 31);
 
-    date1.tm_year = yearEntry1 - 1900;
-    date1.tm_mon = monthEntry1 - 1;
-    date1.tm_mday = dayEntry1;
+    year_month_day fecha = year{yearEntry1}/month{monthEntry1}/day{dayEntry1};
+    auto today = floor<days>(system_clock::now());
+    year_month_day fecha2 = year_month_day{today};
+
+    //date1.tm_year = yearEntry1 - 1900;
+    //date1.tm_mon = monthEntry1 - 1;
+    //date1.tm_mday = dayEntry1;
 
     time_t tiempo_actual = time(nullptr);
-    tm* tiempo_descompuesto = localtime(&tiempo_actual);
+    //tm* tiempo_descompuesto = localtime(&tiempo_actual);
 
-    time_t time1 = mktime(&date1);
-    time_t time2 = mktime(tiempo_descompuesto);
 
-    double diferencia_segundos = difftime(time2, time1);
-    double dias = diferencia_segundos / (60 * 60 * 24);
-    int weeks = dias / 7;
-    int resto_dias = static_cast<int>(dias) % 7;
-    cout << "\nDiferencia en dias: " << static_cast<int>(dias) << " dias" << endl;
-    cout << "\n" << weeks << " semanas" << " y " << resto_dias << " dias" << endl;
+
+    sys_days time_point1 = fecha;
+    sys_days time_point2 = fecha2;
+
+    auto duracion_en_dias = time_point2 - time_point1;
+
+    //time_t time1 = mktime(&date1);
+    //time_t time2 = mktime(tiempo_descompuesto);
+
+    //double diferencia_segundos = difftime(time2, time1);
+    //double dias = diferencia_segundos / (60 * 60 * 24);
+    //int weeks = dias / 7;
+    //int resto_dias = static_cast<int>(dias) % 7;
+
+    cout << "La diferencia en días entre las dos fechas es: " << duracion_en_dias.count() << " días." << endl;
+    //cout << "\n" << weeks << " semanas" << " y " << resto_dias << " dias" << endl;
     return 0;
 }
 
@@ -195,4 +210,3 @@ int main()
     }
     LimpiarPantalla();
     return 0;
-}
