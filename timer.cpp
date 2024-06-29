@@ -115,25 +115,25 @@ int daysDiff(){
 }
 
 void dateFromNum(){
-    //int x;
     int numeroDias;
-    time_t now = time(0);
-    tm *ltm = localtime(&now);
+    cout << "Introduce numero de dias: ";
+    cin >> numeroDias;
 
-    cout << "Introduce numero de dias: "; cin >> numeroDias;
-    time_t dateBeforeXDays = now + (numeroDias * 24 * 3600);
-    tm *ltmBeforeXDays = localtime(&dateBeforeXDays);
+    auto today = floor<days>(system_clock::now());
+    auto future_date = today + days(numeroDias);
+
+    year_month_day ymd{future_date};
 
     if(numeroDias > 0){
-        cout << "Fecha dentro de " << numeroDias << " dias: " << ltmBeforeXDays->tm_mday << "/" << 1 + ltmBeforeXDays->tm_mon << "/" << 1900 + ltmBeforeXDays->tm_year << endl;
+        cout << "Fecha dentro de " << numeroDias << " dias: " << ymd << endl;
     }
     else if(numeroDias < 0){
-        cout << "Fecha hace " << abs(numeroDias) << " dias: " << ltmBeforeXDays->tm_mday << "/" << 1 + ltmBeforeXDays->tm_mon << "/" << 1900 + ltmBeforeXDays->tm_year << endl;
+        cout << "Fecha hace " << abs(numeroDias) << " dias: " << ymd << endl;
     }
     else{
-        cout << "Hoy es: " << ltm->tm_mday << "/" << 1 + ltm->tm_mon << "/" << 1900 + ltm->tm_year << endl;
+        auto current_date = year_month_day{today};
+        cout << "Hoy es: " << current_date << endl;
     }
-
 }
 
 string options(){
