@@ -124,15 +124,29 @@ void dateFromNum(){
 
     year_month_day ymd{future_date};
 
+    // Extraer dia mes y año
+    int year = static_cast<int>(ymd.year());
+    unsigned month = static_cast<unsigned>(ymd.month());
+    unsigned day = static_cast<unsigned>(ymd.day());
+
+    // Formateo de fecha d/m/y
+    stringstream dateStream;
+    dateStream << day << "/" << month << "/" << year;
+
     if(numeroDias > 0){
-        cout << "Fecha dentro de " << numeroDias << " dias: " << ymd << endl;
+        cout << "Fecha dentro de " << numeroDias << " dias: " << dateStream.str() << endl;
     }
     else if(numeroDias < 0){
-        cout << "Fecha hace " << abs(numeroDias) << " dias: " << ymd << endl;
+        cout << "Fecha hace " << abs(numeroDias) << " dias: " << dateStream.str() << endl;
     }
     else{
         auto current_date = year_month_day{today};
-        cout << "Hoy es: " << current_date << endl;
+        int currentYear = static_cast<int>(current_date.year());
+        unsigned currentMonth = static_cast<unsigned>(current_date.month());
+        unsigned currentDay = static_cast<unsigned>(current_date.day());
+        stringstream currentDateStream;
+        currentDateStream << currentDay << "/" << currentMonth << "/" << currentYear;
+        cout << "Hoy es: " << currentDateStream.str() << endl;
     }
 }
 
