@@ -133,11 +133,16 @@ void dateFromNum(){
     stringstream dateStream;
     dateStream << day << "/" << month << "/" << year;
 
+    int weeks = numeroDias / 7;
+    int resto_dias = static_cast<int>(numeroDias) % 7;
+
     if(numeroDias > 0){
-        cout << "Fecha dentro de " << numeroDias << " dias: " << dateStream.str() << endl;
+        cout << "Fecha dentro de " << numeroDias << " dias " << "(" << weeks << " semanas y " << resto_dias << " dias): "
+        << dateStream.str() << endl;
     }
     else if(numeroDias < 0){
-        cout << "Fecha hace " << abs(numeroDias) << " dias: " << dateStream.str() << endl;
+        cout << "Fecha hace " << abs(numeroDias) << " dias " << "(" << abs(weeks) << " semanas y " << abs(resto_dias) << " dias): "
+        << dateStream.str() << endl;
     }
     else{
         auto current_date = year_month_day{today};
@@ -209,3 +214,4 @@ int main()
     LimpiarPantalla();
     return 0;
 }
+
