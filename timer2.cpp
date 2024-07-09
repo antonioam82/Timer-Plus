@@ -40,16 +40,16 @@ int obtenerNumeroEntero(string mensaje, int minVal, int maxVal) {
 
 int getCurrentDate(){
     // Obtiene el tiempo actual en formato de tiempo de UNIX
-    std::time_t tiempo_actual = std::time(nullptr);
+    time_t tiempo_actual = time(nullptr);
 
     // Convierte el tiempo a una estructura tm
-    std::tm* tiempo_descompuesto = std::localtime(&tiempo_actual);
+    tm* tiempo_descompuesto = localtime(&tiempo_actual);
 
     // Muestra la fecha actual
-    std::cout << "                             "
+    cout << "                             "
               << tiempo_descompuesto->tm_mday << '/'
               << tiempo_descompuesto->tm_mon + 1 << '/'
-              << tiempo_descompuesto->tm_year + 1900 << std::endl;
+              << tiempo_descompuesto->tm_year + 1900 << endl;
 
     return 0;
 
