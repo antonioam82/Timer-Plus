@@ -9,13 +9,6 @@
 
 using namespace std;
 
-//void LimpiarPantalla(){
-	//if(system("cls") == -1){
-
-		//cout<<"Error al borrar la pantalla  :(";
-	//}
-//}
-
 void LimpiarPantalla(){
     #ifdef _WIN32
         system("cls"); // Windows
