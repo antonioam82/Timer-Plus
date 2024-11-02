@@ -8,14 +8,22 @@
 #include "date/date.h"
 
 using namespace std;
-using namespace date;
-using namespace std::chrono;
+
+//void LimpiarPantalla(){
+	//if(system("cls") == -1){
+
+		//cout<<"Error al borrar la pantalla  :(";
+	//}
+//}
 
 void LimpiarPantalla(){
-	if(system("cls") == -1){
-		cout<<"Error al borrar la pantalla  :(";
-	}
+    #ifdef _WIN32
+        system("cls"); // Windows
+    #else
+        system("clear"); // Linux / MacOS
+    #endif
 }
+
 
 int obtenerNumeroEntero(string mensaje, int minVal, int maxVal) {
     int numero;
@@ -40,51 +48,51 @@ int obtenerNumeroEntero(string mensaje, int minVal, int maxVal) {
 
 int getCurrentDate(){
     // Obtiene el tiempo actual en formato de tiempo de UNIX
-    time_t tiempo_actual = time(nullptr);
+    std::time_t tiempo_actual = std::time(nullptr);
 
     // Convierte el tiempo a una estructura tm
-    tm* tiempo_descompuesto = localtime(&tiempo_actual);
+    std::tm* tiempo_descompuesto = std::localtime(&tiempo_actual);
 
     // Muestra la fecha actual
-    cout << "                             "
+    std::cout << "                             "
               << tiempo_descompuesto->tm_mday << '/'
               << tiempo_descompuesto->tm_mon + 1 << '/'
-              << tiempo_descompuesto->tm_year + 1900 << endl;
+              << tiempo_descompuesto->tm_year + 1900 << std::endl;
 
     return 0;
 
 }
 
 int daysDiff0() {
-    //tm date1 = { 0 }; // Inicializa la estructura de fecha
+    tm date1 = { 0 }; // Inicializa la estructura de fecha
 
+    //cout << "\nIntroduzca anno del suceso: "; cin >> yearEntry1;
     int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del suceso: ", INT_MIN, INT_MAX);
     int monthEntry1 = obtenerNumeroEntero("Introduzca mes del suceso (1-12): ", 1, 12);
     int dayEntry1 = obtenerNumeroEntero("Introduzca dia del suceso: ", 1, 31);
 
-    year_month_day fecha = year{yearEntry1}/month{monthEntry1}/day{dayEntry1};
-    auto today = floor<days>(system_clock::now());
-    year_month_day fecha2 = year_month_day{today};
+    date1.tm_year = yearEntry1 - 1900;
+    date1.tm_mon = monthEntry1 - 1;
+    date1.tm_mday = dayEntry1;
 
     time_t tiempo_actual = time(nullptr);
+    tm* tiempo_descompuesto = localtime(&tiempo_actual);
 
-    sys_days time_point1 = fecha;
-    sys_days time_point2 = fecha2;
+    time_t time1 = mktime(&date1);
+    time_t time2 = mktime(tiempo_descompuesto);
 
-    auto duracion_en_dias = time_point2 - time_point1;
-
-    int dias = duracion_en_dias.count();
+    double diferencia_segundos = difftime(time2, time1);
+    double dias = diferencia_segundos / (60 * 60 * 24);
     int weeks = dias / 7;
     int resto_dias = static_cast<int>(dias) % 7;
-
-    cout << "\nLa diferencia en dias es de: " << dias << " dias." << endl;
-    cout << weeks << " semanas" << " y " << resto_dias << " dias." << endl;
+    cout << "\nDiferencia en dias: " << static_cast<int>(dias) << " dias";
+    cout << "\n" << weeks << " semanas" << " y " << resto_dias << " dias" << endl;
     return 0;
 }
 
 int daysDiff(){
-    //tm date1 = {0}; // Inicializa las estructuras de fechas
-    //tm date2 = {0};
+    tm date1 = {0}; // Inicializa las estructuras de fechas
+    tm date2 = {0};
 
     int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del primer suceso: ", INT_MIN, INT_MAX);
     int monthEntry1 = obtenerNumeroEntero("Introduzca mes del primer suceso (1-12): ", 1, 12);
@@ -94,65 +102,48 @@ int daysDiff(){
     int monthEntry2 = obtenerNumeroEntero("Introduzca mes del segundo suceso (1-12): ", 1, 12);
     int dayEntry2 = obtenerNumeroEntero("Introduzca dia del segundo suceso: ", 1, 31);
 
-    year_month_day fecha1 = year{yearEntry1}/month{monthEntry1}/day{dayEntry1};
-    year_month_day fecha2 = year{yearEntry2}/month{monthEntry2}/day{dayEntry2};
+    date1.tm_year = yearEntry1 - 1900;
+    date1.tm_mon = monthEntry1 - 1;
+    date1.tm_mday = dayEntry1;
 
-    sys_days time_point1 = fecha1;
-    sys_days time_point2 = fecha2;
+    date2.tm_year = yearEntry2 - 1900;
+    date2.tm_mon = monthEntry2 - 1;
+    date2.tm_mday = dayEntry2;
 
-    auto duracion_en_dias = time_point2 - time_point1;
+    time_t time1 = mktime(&date1);
+    time_t time2 = mktime(&date2);
 
-    int dias = duracion_en_dias.count();
+    double diferencia_segundos = difftime(time2, time1);
+    double dias = diferencia_segundos / (60 * 60 * 24);
     int weeks = dias / 7;
     int resto_dias = static_cast<int>(dias) % 7;
-
-
     cout << "\nDiferencia en dias: " << static_cast<int>(dias) << " dias" << endl;
-    cout << weeks << " semanas" << " y " << resto_dias << " dias" << endl;
+    cout << "\n" << weeks << " semanas" << " y " << resto_dias << " dias" << endl;
 
     return 0;
 
 }
 
 void dateFromNum(){
+    //int x;
     int numeroDias;
-    cout << "Introduce numero de dias: ";
-    cin >> numeroDias;
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
 
-    auto today = floor<days>(system_clock::now());
-    auto future_date = today + days(numeroDias);
-
-    year_month_day ymd{future_date};
-
-    // Extraer dia mes y año
-    int year = static_cast<int>(ymd.year());
-    unsigned month = static_cast<unsigned>(ymd.month());
-    unsigned day = static_cast<unsigned>(ymd.day());
-
-    // Formateo de fecha d/m/y
-    stringstream dateStream;
-    dateStream << day << "/" << month << "/" << year;
-
-    int weeks = numeroDias / 7;
-    int resto_dias = static_cast<int>(numeroDias) % 7;
+    cout << "Introduce numero de dias: "; cin >> numeroDias;
+    time_t dateBeforeXDays = now + (numeroDias * 24 * 3600);
+    tm *ltmBeforeXDays = localtime(&dateBeforeXDays);
 
     if(numeroDias > 0){
-        cout << "Fecha dentro de " << numeroDias << " dias " << "(" << weeks << " semanas y " << resto_dias << " dias): "
-        << dateStream.str() << endl;
+        cout << "Fecha dentro de " << numeroDias << " dias: " << ltmBeforeXDays->tm_mday << "/" << 1 + ltmBeforeXDays->tm_mon << "/" << 1900 + ltmBeforeXDays->tm_year << endl;
     }
     else if(numeroDias < 0){
-        cout << "Fecha hace " << abs(numeroDias) << " dias " << "(" << abs(weeks) << " semanas y " << abs(resto_dias) << " dias): "
-        << dateStream.str() << endl;
+        cout << "Fecha hace " << abs(numeroDias) << " dias: " << ltmBeforeXDays->tm_mday << "/" << 1 + ltmBeforeXDays->tm_mon << "/" << 1900 + ltmBeforeXDays->tm_year << endl;
     }
     else{
-        auto current_date = year_month_day{today};
-        int currentYear = static_cast<int>(current_date.year());
-        unsigned currentMonth = static_cast<unsigned>(current_date.month());
-        unsigned currentDay = static_cast<unsigned>(current_date.day());
-        stringstream currentDateStream;
-        currentDateStream << currentDay << "/" << currentMonth << "/" << currentYear;
-        cout << "Hoy es: " << currentDateStream.str() << endl;
+        cout << "Hoy es: " << ltm->tm_mday << "/" << 1 + ltm->tm_mon << "/" << 1900 + ltm->tm_year << endl;
     }
+
 }
 
 string options(){
@@ -193,23 +184,25 @@ int main()
     string option;
     string cont;
     while(option != "D"){
+        option = options();
 
-        do{
+        while(option != "A" && option != "B" && option != "C" && option != "D"){
+            cout << "\nOPCION NO VALIDA: " << option << endl;
+            cout << "\nINGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
             option = options();
-            if(option == "A"){
-                daysDiff0();
-            }
-            if(option == "B"){
-                daysDiff();
-            }
-            if(option == "C"){
-                dateFromNum();
-            }
-            if(option != "D"){
-                cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
         }
-        }while(option != "A" && option != "B" && option != "C" && option != "D");
-
+        if(option == "A"){
+            daysDiff0();
+        }
+        if(option == "B"){
+            daysDiff();
+        }
+        if(option == "C"){
+            dateFromNum();
+        }
+        if(option != "D"){
+            cout << "\nINGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
+        }
     }
     LimpiarPantalla();
     return 0;
