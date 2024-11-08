@@ -9,6 +9,13 @@
 
 using namespace std;
 
+//void LimpiarPantalla(){
+	//if(system("cls") == -1){
+
+		//cout<<"Error al borrar la pantalla  :(";
+	//}
+//}
+
 void LimpiarPantalla(){
     #ifdef _WIN32
         system("cls"); // Windows
@@ -56,13 +63,22 @@ int getCurrentDate(){
 
 }
 
+string bisiesto(int year){
+    if((year % 100 == 0 && year % 400 == 0) | (year % 4 == 0 && year % 100 != 0)){
+        return "bisiesto";
+    }else{
+        return "nobisiesto";
+    }
+}
+
 int daysDiff0() {
     tm date1 = { 0 }; // Inicializa la estructura de fecha
 
     //cout << "\nIntroduzca anno del suceso: "; cin >> yearEntry1;
     int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del suceso: ", INT_MIN, INT_MAX);
-    int monthEntry1 = obtenerNumeroEntero("Introduzca mes del suceso (1-12): ", 1, 12);
-    int dayEntry1 = obtenerNumeroEntero("Introduzca dia del suceso: ", 1, 31);
+    cout << bisiesto(yearEntry1) << endl;
+    int monthEntry1 = obtenerNumeroEntero("Introduzca mes del suceso (1-12): ", 1, 12);/////////////////////////////////
+    int dayEntry1 = obtenerNumeroEntero("Introduzca dia del suceso: ", 1, 31);///////////////////////////////////////////////
 
     date1.tm_year = yearEntry1 - 1900;
     date1.tm_mon = monthEntry1 - 1;
