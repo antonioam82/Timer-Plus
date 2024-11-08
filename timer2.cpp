@@ -9,13 +9,6 @@
 
 using namespace std;
 
-//void LimpiarPantalla(){
-	//if(system("cls") == -1){
-
-		//cout<<"Error al borrar la pantalla  :(";
-	//}
-//}
-
 void LimpiarPantalla(){
     #ifdef _WIN32
         system("cls"); // Windows
@@ -106,14 +99,27 @@ int daysDiff0() {
 int daysDiff(){
     tm date1 = {0}; // Inicializa las estructuras de fechas
     tm date2 = {0};
+    bool esBisiesto;
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
     int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del primer suceso: ", INT_MIN, INT_MAX);
+    esBisiesto = bisiesto(yearEntry1);
+    if(esBisiesto){
+        cout << "Es bisiesto" << endl;
+    }
     int monthEntry1 = obtenerNumeroEntero("Introduzca mes del primer suceso (1-12): ", 1, 12);
     int dayEntry1 = obtenerNumeroEntero("Introduzca dia del primer suceso: ", 1, 31);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
     int yearEntry2 = obtenerNumeroEntero("\nIntroduzca anno del segundo suceso: ", INT_MIN, INT_MAX);
+    esBisiesto = bisiesto(yearEntry2);
+    if(esBisiesto){
+        cout << "Es bisiesto" << endl;
+    }
     int monthEntry2 = obtenerNumeroEntero("Introduzca mes del segundo suceso (1-12): ", 1, 12);
     int dayEntry2 = obtenerNumeroEntero("Introduzca dia del segundo suceso: ", 1, 31);
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
 
     date1.tm_year = yearEntry1 - 1900;
     date1.tm_mon = monthEntry1 - 1;
@@ -220,4 +226,3 @@ int main()
     LimpiarPantalla();
     return 0;
 }
-
