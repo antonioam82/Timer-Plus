@@ -63,20 +63,24 @@ int getCurrentDate(){
 
 }
 
-string bisiesto(int year){
+bool bisiesto(int year){
     if((year % 100 == 0 && year % 400 == 0) | (year % 4 == 0 && year % 100 != 0)){
-        return "bisiesto";
+        return true;
     }else{
-        return "nobisiesto";
+        return false;
     }
 }
 
 int daysDiff0() {
     tm date1 = { 0 }; // Inicializa la estructura de fecha
+    bool esBisiesto;
 
     //cout << "\nIntroduzca anno del suceso: "; cin >> yearEntry1;
     int yearEntry1 = obtenerNumeroEntero("\nIntroduzca anno del suceso: ", INT_MIN, INT_MAX);
-    cout << bisiesto(yearEntry1) << endl;
+    esBisiesto = bisiesto(yearEntry1);
+    if(esBisiesto){
+        cout << "Es bisiesto" << endl;
+    }
     int monthEntry1 = obtenerNumeroEntero("Introduzca mes del suceso (1-12): ", 1, 12);/////////////////////////////////
     int dayEntry1 = obtenerNumeroEntero("Introduzca dia del suceso: ", 1, 31);///////////////////////////////////////////////
 
