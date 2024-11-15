@@ -172,7 +172,7 @@ int main()
 {
     locale::global(std::locale(""));
     string option;
-    string cont;
+    //string cont;
     while(option != "D"){
         option = options();
 
@@ -190,8 +190,8 @@ int main()
         if(option == "C"){
             dateFromNum();
         }
-        if(option != "D"){
-            cout << "INGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
+        if(option == "D"){
+            break;
         }
     }
     LimpiarPantalla();
