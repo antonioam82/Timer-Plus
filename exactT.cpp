@@ -9,6 +9,14 @@
 
 using namespace std;
 
+void LimpiarPantalla(){
+    #ifdef _WIN32
+        system("cls"); // Windows
+    #else
+        system("clear"); // Linux / MacOS
+    #endif
+}
+
 char question() {
     char exit_program;
     do {
@@ -52,6 +60,7 @@ int main()
         int day = numeroEntero("Introduce dia de nacimiento: ");
         cout << "NACISTE EL " << day << " DE " << month << " DE " << year << endl;
         exit_program = question();
+        LimpiarPantalla();
     }
     return 0;
 }
