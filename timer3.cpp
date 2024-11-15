@@ -17,7 +17,6 @@ void LimpiarPantalla(){
     #endif
 }
 
-
 int obtenerNumeroEntero(string mensaje, int minVal, int maxVal) {
     int numero;
     string input;
@@ -234,9 +233,8 @@ int main()
         if(option == "C"){
             dateFromNum();
         }
-        if(option == "D"){
-            //cout << "\nINGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
-            break;
+        if(option != "D"){
+                cout << "\nINGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
         }
     }
     LimpiarPantalla();
