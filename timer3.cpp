@@ -234,8 +234,9 @@ int main()
         if(option == "C"){
             dateFromNum();
         }
-        if(option != "D"){
-            cout << "\nINGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
+        if(option == "D"){
+            //cout << "\nINGRESE CUALQUIER TECLA PARA CONTINUAR: "; cin >> cont;
+            break;
         }
     }
     LimpiarPantalla();
