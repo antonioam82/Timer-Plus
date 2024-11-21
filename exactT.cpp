@@ -93,16 +93,32 @@ int validateNum(string text, int minNum, int maxNum){
 
 }
 
+bool bisiesto(int num){
+
+    if((num % 4 == 0 && num % 100 != 0) || (num % 100 == 0 && num % 400 == 0)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 int main()
 {
     char exit_program = 'n';
     int currentYear, currentMonth, currentDay;
+    bool esBisiesto;
 
     // Obtener la fecha actual
     currentDate(currentYear, currentMonth, currentDay);
 
     while(exit_program == 'n'){
         int year = validateNum("Introduce anno de nacimiento: ",1,currentYear);
+        esBisiesto = bisiesto(year);
+        //if(esBisiesto){
+            //cout << "Es bisiesto" << endl;
+        //}else{
+            //cout << "No es bisiesto" << endl;
+        //}
         int month = validateNum("Introduce mes de nacimiento: ",1,12);
         int day = validateNum("Introduce dia de nacimiento: ",1,31);
         cout << "NACISTE EL " << day << " DEL " << month << " DE " << year << endl;
