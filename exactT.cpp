@@ -128,6 +128,8 @@ int main()
     int currentYear, currentMonth, currentDay;
     bool esBisiesto;
     int maxDay;
+    int maxMonth;
+    //int maxYear
 
     // Obtener la fecha actual
     currentDate(currentYear, currentMonth, currentDay);
@@ -136,7 +138,12 @@ int main()
 
         int year = validateNum("Introduce anno de nacimiento: ",1,currentYear);
         esBisiesto = bisiesto(year);
-        int month = validateNum("Introduce mes de nacimiento: ",1,12);
+        if(year == currentYear){
+            maxMonth = currentMonth;
+        }else{
+            maxMonth = 12;
+        }
+        int month = validateNum("Introduce mes de nacimiento: ",1,maxMonth);
         maxDay = maxiDay(month,esBisiesto);
         int day = validateNum("Introduce dia de nacimiento: ",1,maxDay);
 
