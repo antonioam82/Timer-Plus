@@ -122,6 +122,16 @@ int maxiDay(int month,bool bisiesto){
     return day;
 }
 
+int max_Month(int year,int currentYear,int currentMonth){
+    int maxMonth;
+    if(year == currentYear){
+            maxMonth = currentMonth;
+        }else{
+            maxMonth = 12;
+        }
+    return maxMonth;
+}
+
 int main()
 {
     char exit_program = 'n';
@@ -138,11 +148,7 @@ int main()
 
         int year = validateNum("Introduce anno de nacimiento: ",1,currentYear);
         esBisiesto = bisiesto(year);
-        if(year == currentYear){
-            maxMonth = currentMonth;
-        }else{
-            maxMonth = 12;
-        }
+        maxMonth = max_Month(year, currentYear, currentMonth);
         int month = validateNum("Introduce mes de nacimiento: ",1,maxMonth);
         maxDay = maxiDay(month,esBisiesto);
         int day = validateNum("Introduce dia de nacimiento: ",1,maxDay);
@@ -153,3 +159,5 @@ int main()
     }
     return 0;
 }
+
+
